@@ -1,19 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import "../App/App.scss";
-import Counter from "../Counter/Counter";
-import CounterForm from "../CounterForm/CounterForm";
+import Header from "../Header/Header";
+import Counter from "../../pages/Counter/components/Counter";
+import Converter from "../../pages/Converter/components/Converter";
+
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
-  const [counter, setCounter] = useState(0);
   return (
-    <div className="App">
-      <Counter count={counter} />
-      <CounterForm
-        onDecrement={() => setCounter(counter - 1)}
-        onZero={() => setCounter(0)}
-        onIncrement={() => setCounter(counter + 1)}
-      />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+
+        <Switch>
+          <Route exact path="/Counter">
+            <div className="app-counter">
+              <Counter />
+              <Counter />
+            </div>
+          </Route>
+          <Route exact path="/Converter">
+            <Converter />
+          </Route>
+          <Route exact path="/"></Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
